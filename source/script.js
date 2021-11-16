@@ -26,16 +26,16 @@ if (appearance.indexOf('label') === -1) {
 var excludeString = getPluginParameter('exclude')
 var includeString = getPluginParameter('include')
 
-if (excludeString == null) {
+if ((excludeString == null) || (excludeString === '')) {
   var excludeList = []
 } else {
   var excludeList = excludeString.split(' ')
 }
 
-if (includeString == null) {
+if ((includeString == null) || (includeString === '')) {
   var includeList = []
 } else {
-  var includeList = excludeString.split(' ')
+  var includeList = includeString.split(' ')
 }
 
 if (labelOrLnl) {
@@ -131,11 +131,19 @@ if ((appearance.indexOf('minimal') !== -1) && (fieldType === 'select_one')) {
 
 var indChoices = document.querySelectorAll('.main-choice') // All individual choices, so they can be removed as needed.
 
+console.log('Exclude list:')
+console.log(excludeList)
+console.log('Include list:')
+console.log(includeList)
 if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c]
+    console.log('Choice:')
+    console.log(indChoice)
     var choiceValue = indChoice.id.substr(7)
+    console.log('Choice value:', choiceValue)
     if (excludeList.includes(choiceValue) && !includeList.includes(choiceValue)) {
+      console.log('Excluding choice')
       indChoice.style.display = 'none'
     }
   }
@@ -143,8 +151,12 @@ if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c]
     var choiceValue = indChoice.id.substr(7)
+    console.log('Choice:')
+    console.log(indChoice)
+    console.log('Choice value:', choiceValue)
     if (!includeList.includes(choiceValue)) {
       indChoice.style.display = 'none'
+      console.log('Excluding choice')
     }
   }
 }
