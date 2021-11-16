@@ -23,6 +23,8 @@ if (appearance.indexOf('label') === -1) {
   labelOrLnl = true
 }
 
+// Create a list of choice values that should be included and excluded. If there are none, then it will be an empty list.
+
 var excludeString = getPluginParameter('exclude')
 var includeString = getPluginParameter('include')
 
@@ -131,19 +133,12 @@ if ((appearance.indexOf('minimal') !== -1) && (fieldType === 'select_one')) {
 
 var indChoices = document.querySelectorAll('.main-choice') // All individual choices, so they can be removed as needed.
 
-console.log('Exclude list:')
-console.log(excludeList)
-console.log('Include list:')
-console.log(includeList)
+// Remove choices that should be hidden
 if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
-    var indChoice = indChoices[c]
-    console.log('Choice:')
-    console.log(indChoice)
-    var choiceValue = indChoice.id.substr(7)
-    console.log('Choice value:', choiceValue)
-    if (excludeList.includes(choiceValue) && !includeList.includes(choiceValue)) {
-      console.log('Excluding choice')
+    var indChoice = indChoices[c] // Choice element
+    var choiceValue = indChoice.id.substr(7) // Choice value. Uses the "id" attrinute, and always starts with "choice-", so remove that.
+    if ((excludeList.indexOf(choiceValue) >= 0) && (includeList.indexOf(choiceValue) === -1)) {
       indChoice.parentElement.removeChild(indChoice)
     }
   }
@@ -151,12 +146,8 @@ if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c]
     var choiceValue = indChoice.id.substr(7)
-    console.log('Choice:')
-    console.log(indChoice)
-    console.log('Choice value:', choiceValue)
-    if (!includeList.includes(choiceValue)) {
+    if (includeList.indexOf(choiceValue) === -1) {
       indChoice.parentElement.removeChild(indChoice)
-      console.log('Excluding choice')
     }
   }
 }
