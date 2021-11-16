@@ -144,7 +144,7 @@ if (excludeList.length > 0) {
     console.log('Choice value:', choiceValue)
     if (excludeList.includes(choiceValue) && !includeList.includes(choiceValue)) {
       console.log('Excluding choice')
-      indChoice.style.display = 'none'
+      indChoice.parentElement.removeChild(indChoice)
     }
   }
 } else if (includeList.length > 0) {
@@ -155,7 +155,7 @@ if (excludeList.length > 0) {
     console.log(indChoice)
     console.log('Choice value:', choiceValue)
     if (!includeList.includes(choiceValue)) {
-      indChoice.style.display = 'none'
+      indChoice.parentElement.removeChild(indChoice)
       console.log('Excluding choice')
     }
   }
