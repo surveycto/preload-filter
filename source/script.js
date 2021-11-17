@@ -7,7 +7,7 @@ var numChoices = choices.length
 
 var labelContainer = document.querySelector('#label')
 var hintContainer = document.querySelector('#hint')
-var filterBox = document.querySelector('#filter-text')
+var filterBox = document.querySelector('#filter-text') // Search box element
 
 var choiceContainers // Will eventually contain all choice containers, either from no appearance, or 'list-nolabel' appearance
 var radioButtonsContainer = document.querySelector('#radio-buttons-container') // default radio buttons
@@ -16,8 +16,8 @@ var likertContainer = document.querySelector('#likert-container') // likert
 var choiceLabelContainer = document.querySelector('#choice-labels')
 var listNoLabelContainer = document.querySelector('#list-nolabel')
 
+// Whether or not it is "label" or "list-nolabel" appearance
 var labelOrLnl
-
 if (appearance.indexOf('label') === -1) {
   labelOrLnl = false
 } else {
@@ -139,34 +139,34 @@ if ((appearance.indexOf('minimal') !== -1) && (fieldType === 'select_one')) {
   }
 }
 
-var indChoices = document.querySelectorAll('.main-choice') // All individual choices, so they can be removed as needed.
+var indChoices = document.querySelectorAll('.main-choice') // All individual choice elements, so they can be removed as needed.
 
-// Remove choices that should be hidden
+// Remove choices that should be filtered out
 var valueList = [] // Stores list of values that still exist, so they can be checked later for the filter.
 var remainingChoiceDict = {} // Obj where the key is the choice value, and the value is the choice element
 if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c] // Choice element
     var choiceValue = choices[c].CHOICE_VALUE
-    if ((excludeList.indexOf(choiceValue) >= 0) && (includeList.indexOf(choiceValue) === -1)) {
+    if ((excludeList.indexOf(choiceValue) >= 0) && (includeList.indexOf(choiceValue) === -1)) { // Remove choices that are in exclude list but not include list.
       indChoice.parentElement.removeChild(indChoice)
     } else {
       remainingChoiceDict[choiceValue] = indChoice
       valueList.push(choiceValue)
     }
   }
-} else if (includeList.length > 0) {
+} else if (includeList.length > 0) { // There is an include list, but no exclude list
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c]
     var choiceValue = choices[c].CHOICE_VALUE
-    if (includeList.indexOf(choiceValue) === -1) {
+    if (includeList.indexOf(choiceValue) === -1) { // Remove choices that are not in include list
       indChoice.parentElement.removeChild(indChoice)
     } else {
       remainingChoiceDict[choiceValue] = indChoice
       valueList.push(choiceValue)
     }
   }
-} else {
+} else { // If there are no filters, then add all choice values to the value list.
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c]
     var choiceValue = choices[c].CHOICE_VALUE
@@ -175,18 +175,17 @@ if (excludeList.length > 0) {
   }
 }
 
-var remainingChoices = document.querySelectorAll('.main-choice') // Get all the remaining choices after the filtered ones have been removed.
+var remainingChoices = document.querySelectorAll('.main-choice') // Get all the remaining choice elements after the filtered ones have been removed.
 var numRemaining = remainingChoices.length // Number of remaining choices
 
-// Clear selected choices that have since been filtered out.
+// Clear selected choices that have since been filtered out from the current field value.
 var selected = []
 for (var c = 0; c < numChoices; c++) {
   var choice = choices[c]
-  if ((choice.CHOICE_SELECTED) && (valueList.indexOf(choice.CHOICE_VALUE) !== -1)) {
+  if ((choice.CHOICE_SELECTED) && (valueList.indexOf(choice.CHOICE_VALUE) !== -1)) { // Add to set choices if both selected and in the value list.
     selected.push(choices[c].CHOICE_VALUE)
   }
 }
-
 setAnswer(selected.join(' '))
 
 // Filter choices based on search box
@@ -212,9 +211,7 @@ if (searchable) {
       }
     }
   })
-}
-
-// END filter box setup
+} // End setup of search box
 
 function clearAnswer () {
   // minimal appearance
