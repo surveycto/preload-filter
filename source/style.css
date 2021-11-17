@@ -16,6 +16,15 @@
     font-style: italic;
 }
 
+.search-box {
+    /* add style rules here to change how the search box appears */
+    width: 100%;
+    margin: .5rem 0;
+    padding: .5rem;
+    border: 1px solid #047CC2;
+    box-sizing: border-box;
+}
+
 /* 
     ------------------------
     Choices

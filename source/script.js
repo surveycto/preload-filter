@@ -7,6 +7,7 @@ var numChoices = choices.length
 
 var labelContainer = document.querySelector('#label')
 var hintContainer = document.querySelector('#hint')
+var filterBox = document.querySelector('#filter-text')
 
 var choiceContainers // Will eventually contain all choice containers, either from no appearance, or 'list-nolabel' appearance
 var radioButtonsContainer = document.querySelector('#radio-buttons-container') // default radio buttons
@@ -27,6 +28,13 @@ if (appearance.indexOf('label') === -1) {
 
 var excludeString = getPluginParameter('exclude')
 var includeString = getPluginParameter('include')
+
+if (getPluginParameter('search') === 1) {
+  var searchable = true
+  filterBox.style.display = ''
+} else {
+  var searchable = false
+}
 
 if ((excludeString == null) || (excludeString === '')) {
   var excludeList = []
@@ -134,12 +142,16 @@ if ((appearance.indexOf('minimal') !== -1) && (fieldType === 'select_one')) {
 var indChoices = document.querySelectorAll('.main-choice') // All individual choices, so they can be removed as needed.
 
 // Remove choices that should be hidden
+var valueList = [] // Stores list of values that still exist, so they can be checked later for the filter.
+var remainingChoiceDict = {}
 if (excludeList.length > 0) {
   for (var c = 0; c < numChoices; c++) {
     var indChoice = indChoices[c] // Choice element
     var choiceValue = indChoice.id.substr(7) // Choice value. Uses the "id" attrinute, and always starts with "choice-", so remove that.
     if ((excludeList.indexOf(choiceValue) >= 0) && (includeList.indexOf(choiceValue) === -1)) {
       indChoice.parentElement.removeChild(indChoice)
+    } else {
+      remainingChoiceDict[choiceValue] = indChoice
     }
   }
 } else if (includeList.length > 0) {
@@ -148,9 +160,39 @@ if (excludeList.length > 0) {
     var choiceValue = indChoice.id.substr(7)
     if (includeList.indexOf(choiceValue) === -1) {
       indChoice.parentElement.removeChild(indChoice)
+    } else {
+      remainingChoiceDict[choiceValue] = indChoice
     }
   }
 }
+
+// Filter choices based on search box
+if (searchable) {
+  var remainingChoices = document.querySelectorAll('.main-choice') // Get all the remaining choices after the filtered ones have been removed.
+  var numRemaining = remainingChoices.length // Number of remaining choices
+
+  var labelDict = {}
+  for (var c = 0; c < numChoices; c++) { // Create an object of each choice label, so they can easily be checked, and if the search term cannot be found, then the corresponding choice container will be removed. Retrieve even the removed ones, since easier to cycle through.
+    var choice = choices[c]
+    var choiceLabel = choice.CHOICE_LABEL.toLowerCase()
+    var choiceValue = choice.CHOICE_VALUE
+    labelDict[choiceValue] = choiceLabel
+  }
+
+  filterBox.addEventListener('input', function () { // When the text is changed, go through each item in "remainingChoiceDict", retrieve its key, which is the choice value. Use that to retrieve its label from "labelDict", and check if that label contains the search text. If it doesn't, then use "remainingChoiceDict" to get the element and hide it.
+    var filterText = filterBox.value.toLowerCase() // Make not case sensitive
+    for (var choiceValue in remainingChoiceDict) {
+      var choiceLabel = labelDict[choiceValue]
+      if (choiceLabel.indexOf(filterText) === -1) {
+        remainingChoiceDict[choiceValue].style.display = 'none'
+      } else {
+        remainingChoiceDict[choiceValue].style.display = ''
+      }
+    }
+  })
+}
+
+// END filter box setup
 
 function clearAnswer () {
   // minimal appearance
