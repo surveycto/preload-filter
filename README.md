@@ -30,7 +30,7 @@ To learn how to customize the field plug-in, check out the [parameters](#paramet
 
 ### Data format
 
-The field will have a value of the selected choices in a space-separated list, just like a normal *[select_one](https://docs.surveycto.com/02-designing-forms/01-core-concepts/03h.field-types-select-one.html)* or *[select_multiple](https://docs.surveycto.com/02-designing-forms/01-core-concepts/03i.field-types-select-multiple.html)* field.
+Data will be stored in the same format as the original field type. For a *[select_one](https://docs.surveycto.com/02-designing-forms/01-core-concepts/03h.field-types-select-one.html)* field, it will store the value of the selected choice. For a *[select_multiple](https://docs.surveycto.com/02-designing-forms/01-core-concepts/03i.field-types-select-multiple.html)* field, it will store the values of the selected choices in a space-separated list.
 
 ## How to use
 
