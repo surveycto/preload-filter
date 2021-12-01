@@ -40,7 +40,7 @@ Data will be stored in the same format as the original field type. For a *[selec
 
 **To use with the sample form:**
 
-1. Download the [sample form](https://github.com/surveycto/preload-filter/raw/main/extras/sample-forms/sample-main/Timed%20categories%20sample%20form.xlsx) and [media files](https://github.com/scto-sandbox/preload-filter/raw/main/extras/sample-form/media.zip) from this repo. The media file includes the data file with the pre-loaded choices.
+1. Download the [sample form](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Pre-load%20filter%20sample%20form.xlsx) and [media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip) from this repo. The media file includes the data file with the pre-loaded choices.
 1. Download the [preload-filter.fieldplugin.zip](https://github.com/surveycto/preload-filter/raw/main/preload-filter.fieldplugin.zip) file from this repo.
 1. Upload the form to your server with the ZIP files attached.
 
@@ -83,7 +83,10 @@ All parameters are **optional**, but they are needed to filter the choices.
 ## More resources
 
 * **Sample form**  
-You can find the sample form definition [here](https://github.com/surveycto/preload-filter/raw/main/extras/sample-forms/sample-main/Timed%20categories%20sample%20form.xlsx). You will also need the [media files](https://github.com/scto-sandbox/preload-filter/raw/main/extras/sample-form/media.zip).
+You can find the sample form definition [here](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Pre-load%20filter%20sample%20form.xlsx). You will also need the [media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip).
+
+* **Test form**  
+If you are a developer, and you would like to expand on this field plug-in, you can use [this form definition](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Test%20form.xlsx) for testing, which uses different field property values. It uses the same [media files]([media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip).
 
 * **Developer documentation**  
 More instructions for developing and using field plug-ins can be found here: [https://github.com/surveycto/Field-plug-in-resources](https://github.com/surveycto/Field-plug-in-resources)
