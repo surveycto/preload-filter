@@ -15,7 +15,7 @@ This field plug-in is built on the [select_one-select_multiple](https://github.c
 
 If you have never pre-loaded choices before, check out our documentation on [loading multiple-choice options from pre-loaded data](https://docs.surveycto.com/02-designing-forms/03-advanced-topics/04.search-and-select.html), as well as [this webinar](https://www.surveycto.com/videos/preloading-multiple-choices-webinar/).
 
-[![](extras/readme-images/beta-release-download.jpeg)](https://github.com/surveycto/preload-filter/raw/main/preload-filter.fieldplugin.zip)
+[![](extras/readme-images/beta-release-download.jpg)](https://github.com/surveycto/preload-filter/raw/main/preload-filter.fieldplugin.zip)
 
 *This plug-in is currently under beta. If you you find a problem with the field plug-in, please email support@surveycto.com.*
 
@@ -86,7 +86,7 @@ All parameters are **optional**, but they are needed to filter the choices.
 You can find the sample form definition [here](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Pre-load%20filter%20sample%20form.xlsx). You will also need the [media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip).
 
 * **Test form**  
-If you are a developer, and you would like to expand on this field plug-in, you can use [this form definition](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Test%20form.xlsx) for testing, which uses different field property values. It uses the same [media files]([media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip).
+If you are a developer, and you would like to expand on this field plug-in, you can use [this form definition](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/Test%20form.xlsx) for testing, which uses different field property values. It uses the same [media files](https://github.com/surveycto/preload-filter/raw/main/extras/sample-form/media.zip).
 
 * **Developer documentation**  
 More instructions for developing and using field plug-ins can be found here: [https://github.com/surveycto/Field-plug-in-resources](https://github.com/surveycto/Field-plug-in-resources)
