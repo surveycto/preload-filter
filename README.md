@@ -15,9 +15,7 @@ This field plug-in is built on the [select_one-select_multiple](https://github.c
 
 If you have never pre-loaded choices before, check out our documentation on [loading multiple-choice options from pre-loaded data](https://docs.surveycto.com/02-designing-forms/03-advanced-topics/04.search-and-select.html), as well as [this webinar](https://www.surveycto.com/videos/preloading-multiple-choices-webinar/).
 
-[![](extras/readme-images/beta-release-download.jpg)](https://github.com/surveycto/preload-filter/raw/main/preload-filter.fieldplugin.zip)
-
-*This plug-in is currently under beta. If you you find a problem with the field plug-in, please email support@surveycto.com.*
+[![Download](extras/readme-images/download-button.png)](https://github.com/surveycto/preload-filter/raw/main/preload-filter.fieldplugin.zip)
 
 ### Features
 
